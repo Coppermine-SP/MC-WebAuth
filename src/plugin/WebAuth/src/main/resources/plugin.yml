@@ -1,0 +1,4 @@
+name: WebAuth
+version: '${project.version}'
+main: corp.cloudint.webauth.WebAuth
+api-version: '1.21'
