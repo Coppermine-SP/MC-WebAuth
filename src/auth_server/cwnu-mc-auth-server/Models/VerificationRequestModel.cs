@@ -1,10 +1,13 @@
-﻿namespace cwnu_mc_auth_server.Models
+﻿using Microsoft.Extensions.Primitives;
+
+namespace cwnu_mc_auth_server.Models
 {
     public class VerificationRequestModel
     {
-        public string VerificationToken;
+        public string? VerificationToken { get; private set; }
         public string AuthCode;
         public string PlayerUuid;
+        public string PlayerName;
         public string? StudentId;
         public int? DeptCode;
         static string _generateAuthCode(int length)
@@ -16,11 +19,12 @@
             return randomString;
         }
 
-        public VerificationRequestModel(string playerUuid)
+        public void SetVerificationToken() => VerificationToken = Guid.NewGuid().ToString().Replace("-", string.Empty);
+        public VerificationRequestModel(string playerUuid, string playerName)
         {
-            VerificationToken = Guid.NewGuid().ToString().Replace("-", string.Empty);
             AuthCode = _generateAuthCode(6);
             PlayerUuid = playerUuid;
+            PlayerName = playerName;
         }
     }
 }

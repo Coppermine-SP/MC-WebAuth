@@ -34,7 +34,7 @@ body {
     padding: 50px 35px 50px 35px;
 }
 
-input {
+.code-input {
     -moz-appearance: textfield;
     width: 50px;
     font-family: "0xProto", sans-serif;

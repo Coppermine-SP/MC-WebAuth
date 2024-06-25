@@ -16,11 +16,11 @@ namespace cwnu_mc_auth_server.Controllers
         }
 
         [HttpPost]
-        public IActionResult Authorize(string uuid)
+        public IActionResult Authorize(string uuid, string name)
         {
             if (String.IsNullOrWhiteSpace(uuid)) return BadRequest();
 
-            string code = _verificationService.MakeNewVerificationRequest(uuid);
+            string code = _verificationService.MakeNewVerificationRequest(uuid, name);
             return new JsonResult(new AuthorizeResponseModel()
             {
                 IsAuthorized = false,

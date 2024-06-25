@@ -1,1 +1,59 @@
-﻿<h4>@ViewBag.Authcode</h4>
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+<h3>재학생 인증</h3>
+
+<div class="alert alert-dark p-3 mt-4" style="border-radius: 3px;">
+    <div class="d-flex align-content-center align-items-center">
+        <img src="https://mc-heads.net/avatar/@ViewBag.uuid" style="height: 25px; margin-right: 10px"/>
+        <h6 class="d-inline-block mb-0" style="font-family: '0xProto', sens-serif">@ViewBag.nickName</h6>
+    </div>
+    <div class="mt-3">
+        <ul>
+            <li class="mb-1">한번 소속 학과를 결정하면, 변경 할 수 없습니다.</li>
+            <li class="mb-1">같은 이메일로 재학생 인증을 한 번 이상 할 수 없습니다.</li>
+            <li>소속 학과가 인-게임 채팅에 표시됩니다.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="alert alert-info mt-4 mb-0" style="border-radius: 3px; min-height: 45px; padding: 10px 20px;">
+    <i class="bi bi-info-circle-fill d-inline-block" style="margin-right: 5px"></i> 학교 이메일은 창원대학교 와글 > 웹메일에서 확인 할 수 있습니다.
+</div>
+
+<div class="card mt-4 bg-transparent" style="border-radius: 3px;">
+    <div class="card-body">
+        <form class="needs-validation" novalidate asp-action="RequestVerificationToken" method="POST">
+            <div class="mb-3">
+                <input class="d-none" value="@ViewBag.Authcode" name="authcode"/>
+                <label for="dept" class="form-label">소속 학과 / 전공</label>
+                <select id="dept" class="form-select" required name="dept">
+                    <option disabled selected value="">소속 학과 / 전공 선택</option>
+                    <option value="1">컴퓨터공학과</option>
+                    <option value="2">정보통신공학과</option>
+                    <option value="3">로봇제어계측공학전공</option>
+                </select>
+            </div>
+            <label for="student-id" class="form-label">학교 이메일</label>
+            <div class="input-group mb-3">
+                <input type="text" id="student-id" class="form-control" placeholder="학번" aria-label="학번" autocomplete="off" pattern=".{8}" maxlength="8" required name="studentId">
+                <span class="input-group-text">@@ gs.cwnu.ac.kr</span>
+                <div class="invalid-feedback">
+                    학번이 올바르지 않습니다.
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                    위의 모든 사항을 이해하였으며, 동의합니다.
+                </label>
+                <div class="invalid-feedback">
+                    반드시 해당 사항에 동의해야 합니다.
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3" type="submit">제출</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/verification.js"></script>
+}
