@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html data-bs-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@ViewData["Title"] - 재학생 인증</title>
+
+<!--vendor-specific css-->
+<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css"/>
+<link rel="stylesheet" href="~/lib/pretendard/static/pretendard.min.css" />
+    
+<!--site-specific css-->
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+<!--page-specific css-->
+@RenderSection("Styles", required: false)
+</head>
+<body>
+<div id="top-banner" class="fixed-top alert alert-primary w-100">
+    <i class="bi bi-github d-inline-block" style="margin-right: 10px;"></i>
+    See this repository on GitHub:
+    <a href="https://github.com/Coppermine-SP/cwnu-mc-auth">cwnu-mc-auth</a>
+</div>
+
+<div id="modal-background" class="d-flex align-items-center justify-content-center p-4 h-100 w-100">
+    <div id="page-modal" class="shadow">
+        @RenderBody()
+    </div>
+</div>
+<!--vendor-specific js-->
+<script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!--site-specific js-->
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<!--page-specific js-->
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

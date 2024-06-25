@@ -1,0 +1,40 @@
+﻿<div class="d-flex flex-column h-100">
+    <div class="flex-grow-1">
+        <h2>👋 환영합니다!</h2>
+        <h6 class="mb-4">귀하가 창원대학교 구성원인지 확인하려고 합니다.</h6>
+        <h4 class="text-center mt-5 mb-2">인증 코드 입력</h4>
+        <p class="text-center">게임 접속 화면에서 표시된 인증 코드를 입력하세요</p>
+        <div id="authcode-container" class="mb-3 mt-3 d-flex align-items-center justify-content-center flex-nowrap">
+            <input id="code-1" type="text" maxlength="1" autocomplete="off" />
+            <input id="code-2" type="text" maxlength="1" autocomplete="off" />
+            <input id="code-3" type="text" maxlength="1" autocomplete="off" />
+            <input id="code-4" type="text" maxlength="1" autocomplete="off" />
+            <input id="code-5" type="text" maxlength="1" autocomplete="off" />
+            <input id="code-6" type="text" maxlength="1" autocomplete="off" />
+        </div>
+
+        @if (ViewBag.ErrorMessage is not null)
+        {
+            <div class="alert alert-warning mt-4 mb-0" style="border-radius: 3px; height: 45px; padding: 10px 20px;">
+                <i class="bi bi-exclamation-triangle-fill d-inline-block" style="margin-right: 5px"></i> @ViewBag.ErrorMessage
+            </div>
+        }
+    </div>
+    <div>
+        <div class="alert alert-dark mt-4" style="border-radius: 3px">
+            <i class="bi bi-exclamation-triangle-fill d-inline-block" style="margin-right: 5px"></i> 알아두기
+            <ul class="mt-2">
+                <li class="mb-2">사용자의 개인 정보를 보호하기 위해 최선을 다하고 있습니다.</li>
+                <li class="mb-2">귀하의 개인 정보는 오직 귀하가 창원대학교 구성원이라는 것을 증명하는 것 이외의 용도로 사용되지 않습니다.</li>
+                <li class="mb-2">관리자도 귀하를 인-게임에서 학번으로 식별 할 수 없습니다.</li>
+                <li>국립창원대학교와 어떠한 파트너십, 제휴와 같은 어떠한 공식적인 연관도 없습니다.</li>
+            </ul>
+        </div>
+    </div>
+    <form class="d-none" id="auth-hidden-form" asp-action="Verification" method="POST">
+        <input id="auth-hidden-form-authcode" type="text" name="authcode" />
+    </form>
+</div>
+@section Scripts{
+    <script src="~/js/index.js"></script>
+}

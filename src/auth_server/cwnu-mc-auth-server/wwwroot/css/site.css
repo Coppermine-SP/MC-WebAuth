@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "0xProto";
+    src: local("0xProto"),
+         url("/fonts/0xProto/0xProto-Regular.otf") format("otf"),
+         url("/fonts/0xProto/0xProto-Regular.ttf") format("ttf"),
+         url("/fonts/0xProto/0xProto-Regular.woff2") format("woff2");
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    min-width: 500px;
+    min-height: 700px;
+    font-family: "Pretendard", sans-serif;
+    background-size: 10px 10px;
+    background-image: repeating-linear-gradient(45deg, #2a2a2a 0, #2a2a2a 1px, #161616 0, #161616 50%);
+}
+
+#top-banner {
+    height: 45px;
+    padding: 10px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+}
+
+#page-modal {
+    height: 750px;
+    width: 550px;
+    max-height: 800px;
+    border-radius: 3px;
+    z-index: 10;
+    background-color: #101010;
+    padding: 50px 35px 50px 35px;
+}
+
+input {
+    -moz-appearance: textfield;
+    width: 50px;
+    font-family: "0xProto", sans-serif;
+    height: 70px;
+    font-size: 32px;
+    margin-left: 18px;
+    text-align: center;
+}
+
+.ios-safari input, .ios-safari textarea, .ios-safari select {
+    font-size: 24px; /* for webkit-appererance font sizing issue */
+}
