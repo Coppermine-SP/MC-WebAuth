@@ -37,13 +37,13 @@ namespace cwnu_mc_auth_server.Controllers
             if (!_verificationService.CheckVerificationRequest(authcode, out model) || model is null)
             {
                 TempData["errMessage"] = "인증 코드가 만료되었거나 유효하지 않습니다.";
-                return Redirect("Index");
+                return RedirectToAction("Index");
             }
 
             if (model.VerificationToken is not null)
             {
                 TempData["errMessage"] = "이미 인증 메일을 발송했습니다.";
-                return Redirect("Index");
+                return RedirectToAction("Index");
             }
 
             ViewBag.uuid = model.PlayerUuid;
@@ -74,13 +74,13 @@ namespace cwnu_mc_auth_server.Controllers
             if (!_verificationService.CheckVerificationRequest(authcode, out model) || model is null)
             {
                 TempData["errMessage"] = "인증 코드가 만료되었거나 유효하지 않습니다.";
-                return Redirect("/");
+                return RedirectToAction("Index");
             }
 
             if (model.VerificationToken is not null)
             {
                 TempData["errMessage"] = "이미 인증 메일을 발송했습니다.";
-                return Redirect("/");
+                return RedirectToAction("Index");
             }
 
             var usr = _dbContext.Users.SingleOrDefault(x => x.StudentId == Util.GetSHA256Hash(studentId.ToString()));
@@ -89,13 +89,13 @@ namespace cwnu_mc_auth_server.Controllers
             if (usr is not null)
             {
                 TempData["errMessage"] = $"이미 이 학번으로 재학생 인증을 받았습니다.";
-                return Redirect("/");
+                return RedirectToAction("Index");
             }
 
             if (dpt is null)
             {
                 TempData["errMessage"] = $"올바르지 않은 학과 데이터";
-                return Redirect("/");
+                return RedirectToAction("Index");
             }
                 
             model.SetVerificationToken();
