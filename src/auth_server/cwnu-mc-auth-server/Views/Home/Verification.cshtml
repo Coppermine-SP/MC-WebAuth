@@ -1,4 +1,4 @@
-﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+﻿@model VerificationViewModel
 <h3>재학생 인증</h3>
 
 <div class="alert alert-dark p-3 mt-4" style="border-radius: 3px;">
@@ -27,9 +27,9 @@
                 <label for="dept" class="form-label">소속 학과 / 전공</label>
                 <select id="dept" class="form-select" required name="dept">
                     <option disabled selected value="">소속 학과 / 전공 선택</option>
-                    <option value="1">컴퓨터공학과</option>
-                    <option value="2">정보통신공학과</option>
-                    <option value="3">로봇제어계측공학전공</option>
+                    @foreach (var dept in Model.Depts){
+                        <option value="@dept.DeptId">@dept.Name</option>
+                    }
                 </select>
             </div>
             <label for="student-id" class="form-label">학교 이메일</label>
