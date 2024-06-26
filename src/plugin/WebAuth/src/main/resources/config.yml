@@ -1,0 +1,3 @@
+authApiUrl: "http://auth.example.corp"
+authUrl: "http://auth.example.com"
+authApiSecret: "q1w2e3r4!"
