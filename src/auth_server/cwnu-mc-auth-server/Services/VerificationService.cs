@@ -1,9 +1,5 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Xml.Linq;
+﻿using cwnu_mc_auth_server.Contexts;
 using cwnu_mc_auth_server.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace cwnu_mc_auth_server.Services
@@ -13,7 +9,7 @@ namespace cwnu_mc_auth_server.Services
         public string MakeNewVerificationRequest(string uuid, string name);
         public bool CheckVerificationRequest(string authcode, out VerificationRequestModel? model);
         public bool RequestVerificationToken(VerificationRequestModel model);
-        public bool CompleteVerification(string token);
+        public bool CompleteVerification(ServerDBContext _context, string token);
     }
 
     public class VerificationService : IVerificationService {
@@ -60,10 +56,21 @@ namespace cwnu_mc_auth_server.Services
         
         }
 
-        bool IVerificationService.CompleteVerification(string token)
+        bool IVerificationService.CompleteVerification(ServerDBContext _context, string token)
         {
             var tokenCache = (VerificationRequestModel?)_memoryCache.Get(token);
             if(tokenCache is null) return false;
+
+
+            var model = new User()
+            {
+                DeptId = tokenCache.DeptCode.GetValueOrDefault(1),
+                StudentId = Util.GetSHA256Hash(tokenCache.StudentId),
+                Uuid = tokenCache.PlayerUuid
+            };
+
+            _context.Users.Add(model);
+            _context.SaveChanges();
 
             _logger.LogInformation($"{tokenCache.PlayerUuid} : {tokenCache.PlayerName} => Verification Completed");
             _memoryCache.Remove(tokenCache.VerificationToken ?? "");
