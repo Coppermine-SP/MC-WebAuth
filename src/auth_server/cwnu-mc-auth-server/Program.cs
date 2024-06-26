@@ -1,4 +1,6 @@
+using cwnu_mc_auth_server.Contexts;
 using cwnu_mc_auth_server.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace cwnu_mc_auth_server
 {
@@ -12,6 +14,7 @@ namespace cwnu_mc_auth_server
             builder.Services.AddControllersWithViews();
             builder.Services.AddMemoryCache();
             builder.Services.AddSingleton<IVerificationService, VerificationService>();
+            builder.Services.AddDbContext<ServerDBContext>();
 
             var app = builder.Build();
 
