@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# exclude vendors from linguist
+src/auth_server/cwnu-mc-auth-server/wwwroot/lib/* lingist-vendored
