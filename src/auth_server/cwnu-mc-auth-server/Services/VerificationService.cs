@@ -10,6 +10,7 @@ namespace cwnu_mc_auth_server.Services
         public bool CheckVerificationRequest(string authcode, out VerificationRequestModel? model);
         public bool RequestVerificationToken(VerificationRequestModel model);
         public bool CompleteVerification(ServerDBContext _context, string token);
+        public void CancelVerification(VerificationRequestModel model);
     }
 
     public class VerificationService : IVerificationService {
@@ -30,7 +31,7 @@ namespace cwnu_mc_auth_server.Services
 
         bool IVerificationService.RequestVerificationToken(VerificationRequestModel model)
         {
-            _logger.LogInformation($"{model.PlayerUuid} : {model.PlayerName} => Request verification token ({model.VerificationToken})");
+            _logger.LogInformation($"{model.PlayerUuid} : {model.PlayerName} => Request verification token ({model.VerificationToken}).");
 
             if (model.VerificationToken is null) return false;
             _memoryCache.Set(model.VerificationToken, model, new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(10)));
@@ -48,12 +49,18 @@ namespace cwnu_mc_auth_server.Services
                 _memoryCache.Set(uuid, model.AuthCode, new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(10)));
                 _memoryCache.Set(model.AuthCode, model, new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(10)));
 
-                _logger.LogInformation($"{uuid} : {name} => Create new verification request #{model.AuthCode}");
+                _logger.LogInformation($"{uuid} : {name} => Create new verification request #{model.AuthCode}.");
                 return model.AuthCode;
             }
             else return modelCache.AuthCode;
-            
-        
+        }
+
+        void IVerificationService.CancelVerification(VerificationRequestModel model)
+        {
+            _logger.LogInformation($"#{model.AuthCode} ({model.VerificationToken}) => Verification Canceled.");
+            _memoryCache.Remove(model.VerificationToken ?? "");
+            _memoryCache.Remove(model.PlayerUuid);
+            _memoryCache.Remove(model.AuthCode);
         }
 
         bool IVerificationService.CompleteVerification(ServerDBContext _context, string token)
@@ -72,7 +79,7 @@ namespace cwnu_mc_auth_server.Services
             _context.Users.Add(model);
             _context.SaveChanges();
 
-            _logger.LogInformation($"{tokenCache.PlayerUuid} : {tokenCache.PlayerName} => Verification Completed");
+            _logger.LogInformation($"{tokenCache.PlayerUuid} : {tokenCache.PlayerName} => Verification Completed.");
             _memoryCache.Remove(tokenCache.VerificationToken ?? "");
             _memoryCache.Remove(tokenCache.PlayerUuid);
             _memoryCache.Remove(tokenCache.AuthCode);
