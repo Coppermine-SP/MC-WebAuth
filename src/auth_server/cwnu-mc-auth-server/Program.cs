@@ -14,6 +14,7 @@ namespace cwnu_mc_auth_server
             builder.Services.AddControllersWithViews();
             builder.Services.AddMemoryCache();
             builder.Services.AddSingleton<IVerificationService, VerificationService>();
+            builder.Services.AddSingleton<IEmailService, EmailService>();
             builder.Services.AddDbContext<ServerDBContext>();
 
             var app = builder.Build();
