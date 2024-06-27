@@ -80,4 +80,9 @@ Minecraft Spigot 기반 서버를 위한 외부 인증 서버 프로젝트 입�
 - Microsoft.EntityFrameworkCore.Tools (7.0.20)
 - MySql.EntityFrameworkCore (7.0.16)
 
+### Web
+- bootstrap@5.3.3
+- bootstrap-icons@1.11.3
+- pretendard@1.3.9
+
 ## How to Use
