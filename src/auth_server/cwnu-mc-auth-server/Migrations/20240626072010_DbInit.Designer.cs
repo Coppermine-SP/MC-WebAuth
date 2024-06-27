@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using cwnu_mc_auth_server.Contexts;
+using MC_WebAuth.Contexts;
 
 #nullable disable
 
-namespace cwnu_mc_auth_server.Migrations
+namespace MC_WebAuth.Migrations
 {
     [DbContext(typeof(ServerDBContext))]
     [Migration("20240626072010_DbInit")]
@@ -21,7 +21,7 @@ namespace cwnu_mc_auth_server.Migrations
                 .HasAnnotation("ProductVersion", "7.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("cwnu_mc_auth_server.Models.Dept", b =>
+            modelBuilder.Entity("MC_WebAuth.Models.Dept", b =>
                 {
                     b.Property<int>("DeptId")
                         .ValueGeneratedOnAdd()
@@ -36,7 +36,7 @@ namespace cwnu_mc_auth_server.Migrations
                     b.ToTable("Depts");
                 });
 
-            modelBuilder.Entity("cwnu_mc_auth_server.Models.User", b =>
+            modelBuilder.Entity("MC_WebAuth.Models.User", b =>
                 {
                     b.Property<string>("Uuid")
                         .HasColumnType("varchar(255)");

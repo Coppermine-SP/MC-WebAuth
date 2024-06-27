@@ -10,7 +10,7 @@ body {
     width: 100vw;
     height: 100vh;
     min-width: 378px;
-    min-height: 500px;
+    min-height: 800px;
     font-family: "Pretendard", sans-serif;
     background-size: 10px 10px;
     background-image: repeating-linear-gradient(45deg, #2a2a2a 0, #2a2a2a 1px, #161616 0, #161616 50%);

@@ -1,8 +1,8 @@
-﻿using cwnu_mc_auth_server.Models;
+﻿using MC_WebAuth.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using cwnu_mc_auth_server.Contexts;
-using cwnu_mc_auth_server.Services;
+using MC_WebAuth.Contexts;
+using MC_WebAuth.Services;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text;
 using Microsoft.VisualBasic.CompilerServices;
@@ -11,7 +11,7 @@ using Azure;
 using Org.BouncyCastle.Cms;
 using System.Configuration;
 
-namespace cwnu_mc_auth_server.Controllers
+namespace MC_WebAuth.Controllers
 {
     public class HomeController : Controller
     {

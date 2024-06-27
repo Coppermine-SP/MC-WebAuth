@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Primitives;
 
-namespace cwnu_mc_auth_server.Models
+namespace MC_WebAuth.Models
 {
     public class VerificationRequestModel
     {

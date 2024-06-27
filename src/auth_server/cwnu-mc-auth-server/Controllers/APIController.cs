@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Configuration;
-using cwnu_mc_auth_server.Contexts;
-using cwnu_mc_auth_server.Models;
-using cwnu_mc_auth_server.Services;
+using MC_WebAuth.Contexts;
+using MC_WebAuth.Models;
+using MC_WebAuth.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace cwnu_mc_auth_server.Controllers
+namespace MC_WebAuth.Controllers
 {
     public class APIController : Controller
     {

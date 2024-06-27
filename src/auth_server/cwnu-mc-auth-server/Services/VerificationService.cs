@@ -1,8 +1,8 @@
-﻿using cwnu_mc_auth_server.Contexts;
-using cwnu_mc_auth_server.Models;
+﻿using MC_WebAuth.Contexts;
+using MC_WebAuth.Models;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace cwnu_mc_auth_server.Services
+namespace MC_WebAuth.Services
 {
     public interface IVerificationService
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace cwnu_mc_auth_server.Models
+namespace MC_WebAuth.Models
 {
     [Index(nameof(StudentId), IsUnique = true)]
     public class User

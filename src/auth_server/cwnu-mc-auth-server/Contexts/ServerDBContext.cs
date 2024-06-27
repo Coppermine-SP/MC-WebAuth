@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
-using cwnu_mc_auth_server.Models;
+using MC_WebAuth.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace cwnu_mc_auth_server.Contexts
+namespace MC_WebAuth.Contexts
 {
     public class ServerDBContext : DbContext
     {

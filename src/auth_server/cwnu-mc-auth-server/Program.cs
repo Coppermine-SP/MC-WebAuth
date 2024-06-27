@@ -1,8 +1,8 @@
-using cwnu_mc_auth_server.Contexts;
-using cwnu_mc_auth_server.Services;
+using MC_WebAuth.Contexts;
+using MC_WebAuth.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace cwnu_mc_auth_server
+namespace MC_WebAuth
 {
     public class Program
     {

@@ -2,7 +2,7 @@
 using Azure;
 using Azure.Communication.Email;
 
-namespace cwnu_mc_auth_server.Services
+namespace MC_WebAuth.Services
 {
     public class EmailTemplate
     {

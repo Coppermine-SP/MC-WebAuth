@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace cwnu_mc_auth_server.Services
+namespace MC_WebAuth.Services
 {
     public static class Util
     {

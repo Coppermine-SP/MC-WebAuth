@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace cwnu_mc_auth_server.Migrations
+namespace MC_WebAuth.Migrations
 {
     /// <inheritdoc />
     public partial class UserModelUpdate : Migration
