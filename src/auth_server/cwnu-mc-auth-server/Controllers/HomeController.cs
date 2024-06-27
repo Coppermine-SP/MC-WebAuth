@@ -5,6 +5,11 @@ using cwnu_mc_auth_server.Contexts;
 using cwnu_mc_auth_server.Services;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text;
+using Microsoft.VisualBasic.CompilerServices;
+using Azure.Communication.Email;
+using Azure;
+using Org.BouncyCastle.Cms;
+using System.Configuration;
 
 namespace cwnu_mc_auth_server.Controllers
 {
@@ -12,13 +17,25 @@ namespace cwnu_mc_auth_server.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IVerificationService _verificationService;
+        private readonly IEmailService _emailService;
+        private readonly IConfiguration _config;
         private readonly ServerDBContext _dbContext;
+        private readonly string? _serverUrl;
 
-        public HomeController(ILogger<HomeController> logger, IVerificationService verificationService, ServerDBContext context)
+        public HomeController(ILogger<HomeController> logger, IVerificationService verificationService, IEmailService emailService, IConfiguration config, ServerDBContext context)
         {
             _logger = logger;
             _verificationService = verificationService;
+            _emailService = emailService;
+            _config = config;
             _dbContext = context;
+            _serverUrl = _config.GetValue<String>("serverUrl");
+
+            if (_serverUrl is null || String.IsNullOrWhiteSpace(_serverUrl))
+            {
+                _logger.LogCritical("serverUrl is empty or not configured! Check appsettings.json.");
+                throw new ConfigurationErrorsException();
+            }
         }
 
         public IActionResult Index()
@@ -102,6 +119,16 @@ namespace cwnu_mc_auth_server.Controllers
             model.DeptCode = dept;
             model.StudentId = studentId.ToString();
             _verificationService.RequestVerificationToken(model);
+
+            if (!_emailService.Send(studentId.ToString() + "@gs.cwnu.ac.kr",
+                    new VerificationEmailTemplate(
+                        $"{_serverUrl}/CompleteVerification?token={model.VerificationToken}",
+                        model.PlayerName)))
+            {
+                _verificationService.CancelVerification(model);
+                TempData["errMessage"] = $"지금은 인증 서버에 문제가 있습니다. 인증을 다시 시도하세요.";
+                return RedirectToAction("Index");
+            }
 
             return View("VerificationTokenSent");
         }
