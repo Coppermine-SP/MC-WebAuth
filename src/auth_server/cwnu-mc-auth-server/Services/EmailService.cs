@@ -42,12 +42,12 @@ namespace cwnu_mc_auth_server.Services
 
     public class EmailService : IEmailService
     {
-        private readonly ILogger<VerificationService> _logger;
+        private readonly ILogger<EmailService> _logger;
         private readonly IConfiguration _config;
         private readonly string? _connectionString;
         private readonly string? _senderAddress;
 
-        public EmailService(ILogger<VerificationService> logger, IConfiguration config)
+        public EmailService(ILogger<EmailService> logger, IConfiguration config)
         {
             _logger = logger;
             _config = config;
