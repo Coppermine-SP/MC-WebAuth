@@ -2,4 +2,4 @@
 * text=auto
 
 # exclude vendors from linguist
-src/auth_server/cwnu-mc-auth-server/wwwroot/lib/* lingist-vendored
+src/auth_server/cwnu-mc-auth-server/wwwroot/lib/* linguist-vendored
