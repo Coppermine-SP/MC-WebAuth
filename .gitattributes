@@ -1,5 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
-# exclude vendors from linguist
-src/auth_server/cwnu-mc-auth-server/wwwroot/lib/* linguist-vendored
+# exclude css from linguist
+*.css linguist-detectable=false
