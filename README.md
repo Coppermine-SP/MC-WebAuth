@@ -86,3 +86,32 @@ Minecraft Spigot 기반 서버를 위한 외부 인증 서버 프로젝트 입�
 - pretendard@1.3.9
 
 ## How to Use
+Authentication Server의 appsettings.json을 아래와 같이 구성하십시오:
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ServerSecret": "(Spigot 서버와 사용할 암호)",
+  "APIAllowedIPList": [
+    (API 호출을 허용할 IP 리스트)
+  ],
+  "ServerURL": "(외부에서 인증 서버를 가르키는 URL)",
+  "AzureCommConnectionString": "(Azure Communication Service ConnectionString)",
+  "AzureCommSenderAddress": "(Azure Communication Service E-Mail Address)",
+  "ConnectionStrings": {
+    "ServerDBContext": "(MySQL ConnectionString)"
+  }
+}
+
+```
+Spigot Plugin의 config.yml을 아래와 같이 구성하십시오:
+```yml
+authApiUrl: "(인증 서버 주소)"
+authUrl: "(사용자에게 표시할 인증 서버의 외부 주소)"
+authApiSecret: "(인증 서버 암호)"
+```
